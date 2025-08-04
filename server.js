@@ -12,6 +12,7 @@ app.use(cors());
 
 const jwtSecretKey = "your_super_secret_jwt_key_that_should_be_changed";
 
+let users = [];
 let posts = [];
 
 const authenticateToken = (req, res, next) => {
@@ -27,6 +28,7 @@ const authenticateToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: "Invalid or expired token." });
     }
+
     req.user = user;
     next();
   });
